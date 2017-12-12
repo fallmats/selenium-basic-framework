@@ -55,7 +55,7 @@ public class BrowserSetup {
             options.setExperimentalOption("prefs", prefs);
 
             capa.setCapability(ChromeOptions.CAPABILITY, options);
-            capa.setCapability(CapabilityType.PROXY, proxy);
+//            capa.setCapability(CapabilityType.PROXY, proxy);
 
             driver = remoteDriver(capa);
         } else {  //Default browser CHROME on local machine
