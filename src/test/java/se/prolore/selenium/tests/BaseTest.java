@@ -72,6 +72,7 @@ class BaseTest {
 
         // environment setup
         environment = new EnvironmentParser();
+        screenShot = new ScreenShot(driver);
 
         // general setup
         verificationErrors.setLength(0);
