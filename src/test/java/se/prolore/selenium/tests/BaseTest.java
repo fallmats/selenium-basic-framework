@@ -2,6 +2,7 @@ package se.prolore.selenium.tests;
 
 
 import se.prolore.selenium.common.EnvironmentParser;
+import se.prolore.selenium.common.ScreenShot;
 import se.prolore.selenium.modules.Integrations;
 import org.junit.After;
 import org.junit.Before;
@@ -26,6 +27,7 @@ class BaseTest {
     protected WebDriver driver;
     protected String baseUrl;
     public EnvironmentParser environment;
+    protected ScreenShot screenShot;
 
     // MODULES
     Integrations integrations;

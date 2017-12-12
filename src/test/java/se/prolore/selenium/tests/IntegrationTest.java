@@ -15,12 +15,14 @@ public class IntegrationTest extends BaseTest {
     public void proloreUrlTest() throws Exception {
         System.out.println(environment.getProlore());
         driver.get(environment.getProlore());
+        screenShot.takeScreenShot("proloreUrlTest");
         assertTrue("the prolore picture was not shown", integrations.isProloreVisible());
     }
 
     @Test
     public void checkUtbildning() throws Exception {
         driver.get(environment.getProlore());
+        screenShot.takeScreenShot("checkUtbildning");
         integrations.goToUtbildning();
         assertEquals("Utbildning".toUpperCase(),integrations.getEntryTitle());
 
