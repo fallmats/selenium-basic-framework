@@ -14,6 +14,7 @@ public class EnvironmentParser {
 
     String environment;
     String prolore;
+    String prisjakt;
 
 
     public EnvironmentParser() throws Exception {
@@ -31,12 +32,16 @@ public class EnvironmentParser {
         jsonObject = (JSONObject) obj;
 
         prolore = (String) jsonObject.get("prolore");
-
+        prisjakt = (String) jsonObject.get("prisjakt");
 
     }
 
     public String getProlore() {
         return prolore;
+    }
+
+    public String getPrisjakt() {
+        return prisjakt;
     }
 
 }

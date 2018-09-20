@@ -26,6 +26,7 @@ public class IntegrationTest extends BaseTest {
         integrations.goToUtbildning();
         assertEquals("Utbildning".toUpperCase(),integrations.getEntryTitle());
 
+
     }
 
 

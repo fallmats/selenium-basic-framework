@@ -16,13 +16,17 @@ public class Integrations extends BasePage{
     By proloreLogo = By.id("site-logo");
     By utbildningLink = By.linkText("Utbildning");
     By utbildningHeader = By.cssSelector("h1.entry-title");
+    By stayOnProlore = By.linkText("Stanna på Prolore:s hemsida");
 
 
     public boolean isProloreVisible() {
         return isVisibleElement(proloreLogo,10);
     }
 
-    public void goToUtbildning() { clickElement(utbildningLink); }
+    public void goToUtbildning() {
+        clickElement(stayOnProlore);
+        clickElement(utbildningLink);
+    }
 
     public String getEntryTitle() {
         return getText(utbildningHeader);
