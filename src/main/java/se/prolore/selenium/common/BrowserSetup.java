@@ -47,6 +47,7 @@ public class BrowserSetup {
 
             capa = DesiredCapabilities.chrome();
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
 
             Map<String, Object> prefs = new HashMap<>();
 
@@ -66,6 +67,7 @@ public class BrowserSetup {
             if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
 
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
 
             Map<String, Object> prefs = new HashMap<>();
 
