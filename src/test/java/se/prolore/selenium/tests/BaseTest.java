@@ -3,7 +3,6 @@ package se.prolore.selenium.tests;
 
 import se.prolore.selenium.common.EnvironmentParser;
 import se.prolore.selenium.common.ScreenShot;
-import se.prolore.selenium.modules.Integrations;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +30,6 @@ class BaseTest {
     protected ScreenShot screenShot;
 
     // MODULES
-    Integrations integrations;
     Prisjakt prisjakt;
 
     // GENERAL
@@ -84,7 +82,6 @@ class BaseTest {
 
 
         // Module setup
-        integrations = new Integrations(driver);
         prisjakt = new Prisjakt(driver);
 
         //driver.get()
