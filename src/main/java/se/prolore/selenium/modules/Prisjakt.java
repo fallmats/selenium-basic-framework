@@ -13,11 +13,24 @@ public class Prisjakt extends BasePage{
     }
 
     By datorerCategory = By.linkText("Datorer & Tillbehör");
+    By datorKomponenter = By.linkText("Datorkomponenter");
+    By pageH1 = By.cssSelector("span h1");
 
     public void expandDatorer () {
-        hoverMouse(datorerCategory);
+        hoverMouseClick(datorerCategory);
     }
 
+    public boolean isDatorKomponenterVisible() {
+        return isVisibleElement(datorKomponenter);
+    }
+
+    public void clickDatorKomponenter() {
+        hoverMouseClick(datorKomponenter);
+    }
+
+    public String getPageH1() {
+        return getText(pageH1);
+    }
 
 
 }
