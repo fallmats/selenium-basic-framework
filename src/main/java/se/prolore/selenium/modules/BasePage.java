@@ -6,7 +6,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Mouse;
-import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -199,6 +199,10 @@ public class BasePage {
      */
     public void enterText(By locator, String text) {
         findVisibleElement(locator).sendKeys(text);
+    }
+
+    public void enterText(By locator, Keys key) {
+        findVisibleElement(locator).sendKeys(key);
     }
 
     /**

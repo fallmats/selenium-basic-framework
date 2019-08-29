@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -61,13 +62,14 @@ public class BrowserSetup {
             driver = remoteDriver(capa);
         } else {  //Default browser CHROME on local machine
 
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+
             //Check local machine OS
             if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-osx");
             if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-win.exe");
             if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
-
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
 
             Map<String, Object> prefs = new HashMap<>();
 
@@ -75,9 +77,7 @@ public class BrowserSetup {
             prefs.put("profile.password_manager_enabled", false);
             options.setExperimentalOption("prefs", prefs);
 
-            capa.setCapability(ChromeOptions.CAPABILITY, options);
-
-            driver = new ChromeDriver(capa);
+            driver = new ChromeDriver(options);
         }
 
         return driver;

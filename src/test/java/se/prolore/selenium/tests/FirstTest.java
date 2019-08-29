@@ -7,8 +7,12 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FirstTest {
 
@@ -17,16 +21,15 @@ public class FirstTest {
 
     @Before
     public void setup() {
-        if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-osx");
-        if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-win.exe");
+        if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
+        if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
         if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
 
+        ChromeOptions options = new ChromeOptions();
+        options.setAcceptInsecureCerts(true);
+        //options.addArguments("--headless");
 
-        DesiredCapabilities capa = new DesiredCapabilities();
-        capa.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-        capa.setCapability("nativeEvents", true);
-
-        driver = new ChromeDriver(capa);
+        driver = new ChromeDriver(options);
     }
 
     @Test
