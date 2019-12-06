@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import se.prolore.selenium.common.BrowserSetup;
 import se.prolore.selenium.enums.Browser;
 import se.prolore.selenium.modules.Prisjakt;
+import se.prolore.selenium.modules.Sl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +32,7 @@ class BaseTest {
 
     // MODULES
     Prisjakt prisjakt;
+    Sl sl;
 
     // GENERAL
 
@@ -83,6 +85,7 @@ class BaseTest {
 
         // Module setup
         prisjakt = new Prisjakt(driver);
+        sl = new Sl(driver);
 
         //driver.get()
     }

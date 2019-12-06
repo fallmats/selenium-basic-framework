@@ -33,4 +33,10 @@ public class Prisjakt extends BasePage{
     }
 
 
+    public void expandCategory(String s) {
+        By locator = By.linkText(s);
+        hoverMouse(locator);
+    }
+
+
 }

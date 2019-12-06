@@ -1,6 +1,4 @@
 package se.prolore.selenium.tests;
-
-
 import org.junit.Test;
 
 import java.io.IOException;
@@ -18,6 +16,13 @@ public class PrisjaktTest extends BaseTest {
         prisjakt.expandDatorer();
 
         screenShot.takeScreenShot("hooverCategoryTest");
+    }
+
+    @Test
+    public void mittTest() throws IOException {
+        driver.get(environment.getPrisjakt());
+        prisjakt.expandCategory("Spel & Film");
+        screenShot.takeScreenShot("mittTest");
     }
 
 }
