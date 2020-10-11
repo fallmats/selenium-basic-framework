@@ -14,7 +14,9 @@ public class Prisjakt extends BasePage{
 
     By datorerCategory = By.linkText("Datorer & Tillbehör");
     By datorKomponenter = By.linkText("Datorkomponenter");
+    public By filmCategory = By.linkText("Film");
     By pageH1 = By.cssSelector("span h1");
+    public By spelOchFilm = By.cssSelector("[style='order:7'] ul.category-list--sub-level");
 
     public void expandDatorer () {
         hoverMouseClick(datorerCategory);
@@ -39,4 +41,7 @@ public class Prisjakt extends BasePage{
     }
 
 
+    public String filmSubCategory() {
+        return findVisibleElement(filmCategory).getText();
+    }
 }

@@ -1,8 +1,6 @@
 package se.prolore.selenium.common;
 
 
-import se.prolore.selenium.enums.Browser;
-import se.prolore.exceptions.NoBrowserException;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,8 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import se.prolore.exceptions.NoBrowserException;
+import se.prolore.selenium.enums.Browser;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -48,7 +47,7 @@ public class BrowserSetup {
 
             capa = DesiredCapabilities.chrome();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
 
             Map<String, Object> prefs = new HashMap<>();
 
@@ -64,11 +63,11 @@ public class BrowserSetup {
 
 
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
 
             //Check local machine OS
-            if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-osx");
-            if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-win.exe");
+            if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
+            if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
             if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
 
             Map<String, Object> prefs = new HashMap<>();

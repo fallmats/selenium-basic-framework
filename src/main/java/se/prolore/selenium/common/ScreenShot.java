@@ -3,6 +3,11 @@ package se.prolore.selenium.common;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -24,6 +29,32 @@ public class ScreenShot extends Core {
 
         driver = new Augmenter().augment(driver);
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile, new File(fullPath));
+        return fullPath;
+    }
+
+    public String takePartialScreenShot(String name, By locator) throws IOException {
+        String fullPath = getScreenshotName(name);
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement we = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        Point p = we.getLocation();
+        driver = new Augmenter().augment(driver);
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+
+
+        int width = we.getSize().getWidth();
+        int height = we.getSize().getHeight();
+
+        BufferedImage img = ImageIO.read(srcFile);
+
+        BufferedImage dest = img.getSubimage(p.getX(), p.getY(), width,
+                height);
+
+        ImageIO.write(dest, "png", srcFile);
+
         FileUtils.copyFile(srcFile, new File(fullPath));
         return fullPath;
     }

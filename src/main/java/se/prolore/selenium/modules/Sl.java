@@ -10,7 +10,8 @@ public class Sl extends BasePage{
         super(d);
     }
 
-    By fromInput = By.id("travelplanner_from");
+    By fromInput = By.id("id-0");
+    By toInput = By.id("id-1");
 
     public void writeFromStation(String station) {
         clickElement(fromInput);
@@ -18,8 +19,13 @@ public class Sl extends BasePage{
     }
 
     public void waitUntilListHasExpanded(String station) {
-        By expandedFromList = By.xpath("//span[contains(.,'"+ station +"')]");
+        By expandedFromList = By.xpath("//li[contains(.,'"+ station +"')]");
         findVisibleElement(expandedFromList);
+    }
+
+    public void clickStation(String station) {
+        By expandedFromList = By.xpath("//li[contains(.,'"+ station +"')]");
+        findVisibleElement(expandedFromList).click();
     }
 
     public void hitEnter() {
@@ -28,5 +34,10 @@ public class Sl extends BasePage{
 
     public void waitForStation(String station) {
         findVisibleElementByAttribute(fromInput, "value", station);
+    }
+
+    public void writeToStation(String station) {
+        clickElement(toInput);
+        enterText(toInput, station);
     }
 }

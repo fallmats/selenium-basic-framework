@@ -1,8 +1,5 @@
 package se.prolore.selenium.tests;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
@@ -14,10 +11,10 @@ public class SlTest extends BaseTest {
 
         sl.writeFromStation("Sluss");
         sl.waitUntilListHasExpanded("Slussen (Stockholm)");
-        sl.hitEnter();
+        sl.clickStation("Slussen (Stockholm)");
         sl.waitForStation("Slussen (Stockholm)");
 
-        Thread.sleep(50);
+        sl.writeToStation("Hornstull");
 
         screenShot.takeScreenShot("enterFromStationNameAndCheckExpandedList");
     }
