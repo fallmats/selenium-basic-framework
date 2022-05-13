@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 /**
  * Created by mats on 2016-04-25.
@@ -36,7 +37,7 @@ public class ScreenShot extends Core {
     public String takePartialScreenShot(String name, By locator) throws IOException {
         String fullPath = getScreenshotName(name);
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement we = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         Point p = we.getLocation();

@@ -17,13 +17,12 @@ public class ExerciseTest {
 
     @Before
     public void setup() {
-        if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-osx");
-        if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-win.exe");
-        if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
+        if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
+        if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
+        if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
 
 
         DesiredCapabilities capa = new DesiredCapabilities();
-        capa.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         capa.setCapability("nativeEvents", true);
 
         driver = new ChromeDriver(capa);
@@ -32,8 +31,9 @@ public class ExerciseTest {
     @Test
     public void aFirstTest() {
         driver.get("https://www.phptravels.net/");
-        driver.findElement(By.cssSelector("button[type='submit']")).click();
-        Assert.assertTrue("Date picker is not shown", driver.findElement(By.className("datepicker-days")).isDisplayed());
+        driver.findElement(By.id("cookie_stop")).click();
+        driver.findElement(By.cssSelector("button#submit.btn-primary")).click();
+        Assert.assertTrue("Date picker is not shown", driver.findElement(By.id("checkin")).isDisplayed());
     }
 
 

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class BasePage {
 
     public BasePage(WebDriver d) {
         driver = d;
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         timeoutInSeconds = 15;
     }
 
@@ -43,7 +44,7 @@ public class BasePage {
      * @author mats
      */
     public void waitForLoad() {
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 
@@ -56,7 +57,7 @@ public class BasePage {
         // Only run if JQuery is loaded on the page
         Boolean jQueryIsUndefined = (Boolean) ((JavascriptExecutor)driver).executeScript("return window.jQuery === undefined");
         if (!jQueryIsUndefined) {
-            new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+            new WebDriverWait(driver, Duration.ofSeconds(30)).until((ExpectedCondition<Boolean>) wd ->
                     ((JavascriptExecutor) wd).executeScript("return jQuery.active").equals("0"));
         } else {
             System.out.println("-- INFO: jQuery is not loaded");
@@ -72,7 +73,7 @@ public class BasePage {
         // Only run if Angular is loaded on the page
         Boolean angularIsUndefined = (Boolean) ((JavascriptExecutor)driver).executeScript("return window.angular === undefined");
         if (!angularIsUndefined) {
-            new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+            new WebDriverWait(driver, Duration.ofSeconds(30)).until((ExpectedCondition<Boolean>) wd ->
                     (Boolean) ((JavascriptExecutor) wd).executeScript("(angular.element(document).injector() !== undefined) && (angular.element(document).injector().get('$http').pendingRequests.length === 0)"));
         }
 
@@ -364,6 +365,13 @@ public class BasePage {
 
     }
 
+    public void rightClick(By locator) {
+        Actions action = new Actions(driver);
+        WebElement we = findVisibleElement(locator);
+        action.contextClick(we).perform();
+
+    }
+
 
 
     public void mouseOverOnElementUsingRobot(By locator) {
@@ -428,7 +436,7 @@ public class BasePage {
      * @author mats
      */
     public WebElement findPresentElement(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
@@ -449,7 +457,7 @@ public class BasePage {
      * @author mats
      */
     public WebElement findVisibleElement(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -564,7 +572,7 @@ public class BasePage {
      * @author mats
      */
     public boolean isVisibleElement(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

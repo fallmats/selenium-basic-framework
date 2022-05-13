@@ -45,7 +45,7 @@ public class BrowserSetup {
                     .setFtpProxy(PROXY)
                     .setSslProxy(PROXY);
 
-            capa = DesiredCapabilities.chrome();
+            capa.setBrowserName("chrome");
             ChromeOptions options = new ChromeOptions();
             //options.addArguments("--headless");
 
@@ -68,7 +68,7 @@ public class BrowserSetup {
             //Check local machine OS
             if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
             if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-            if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
+            if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
 
             Map<String, Object> prefs = new HashMap<>();
 

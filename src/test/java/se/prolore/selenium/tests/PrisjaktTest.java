@@ -25,17 +25,19 @@ public class PrisjaktTest extends BaseTest {
     }
 
     @Test
-    public void shouldShowSpelOchFilm() throws IOException {
+    public void mouseOverShouldShowFrame() throws IOException, InterruptedException {
         driver.get(environment.getPrisjakt());
-        prisjakt.expandCategory("Spel & Film");
-        String path1 = screenShot.takePartialScreenShot("shouldShowFilm", prisjakt.spelOchFilm);
-        assertEquals("Film", prisjakt.filmSubCategory());
-        prisjakt.mouseOver(prisjakt.filmCategory);
-        String path2 = screenShot.takePartialScreenShot("shouldShowFilm", prisjakt.spelOchFilm);
+        //prisjakt.expandCategory("Foto & Video");
+        prisjakt.showCategory("Foto & Video");
+        String path1 = screenShot.takePartialScreenShot("shouldShowFotoVideo", prisjakt.systemkameror);
+        //assertEquals("Objektiv", prisjakt.objektivSubCategory());
+        prisjakt.hoverMouse(prisjakt.systemkameror);
+        Thread.sleep(200);
+        String path2 = screenShot.takePartialScreenShot("shouldShowFotoVideo", prisjakt.systemkameror);
         ImgCompare imgCompare = new ImgCompare();
         Double diffPercent= imgCompare.compare(path1,path2);
 
-        assertThat("Pictures did not differ which means mouse over didnt change color", diffPercent, is(greaterThan((double) 0)));
+        assertThat("Pictures did not differ which means mouse over didnt show frame", diffPercent, is(greaterThan((double) 0)));
 
         diffPercent= imgCompare.compare(path1,path1);
         assertThat("This should fail since we compare the same picture", diffPercent, is(greaterThan((double) 0)));

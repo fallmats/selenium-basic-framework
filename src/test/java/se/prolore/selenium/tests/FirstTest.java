@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class FirstTest {
     public void setup() {
         if (isMac()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
         if (isWindows()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-        if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver-nix");
+        if (isNix()) System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
@@ -40,7 +41,7 @@ public class FirstTest {
 
     @Test
     public void aFirstTest() {
-        driver.get("https://www.phptravels.net/");
+        driver.get("https://www.sl.se/");
     }
 
     @Test
@@ -48,18 +49,17 @@ public class FirstTest {
         driver.get("https://sl.se/");
         driver.manage().window().setSize(new Dimension(946, 680));
 
-        driver.findElement(By.cssSelector("#Travelplanner[data-ng-show=\'stateService.getShowSearchTo() && stateService.getShowSearchExternal() == false\'] .input-field-wrapper #travelplanner_from")).click();
-        driver.findElement(By.id("travelplanner_from")).sendKeys("med");
+        driver.findElement(By.cssSelector("input#id-0")).click();
+        driver.findElement(By.cssSelector("input#id-0")).sendKeys("med");
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Medborgarplatsen (Stockholm)')]")));
-        // Thread.sleep(1000);
-        driver.findElement(By.id("travelplanner_from")).sendKeys(Keys.RETURN);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#id-0-result-0")));
 
-        wait.until(ExpectedConditions.attributeContains(By.cssSelector(".active .two-col-rel-left"), "value", "Medborgarplatsen (Stockholm)"));
-        //Thread.sleep(1000);
+        driver.findElement(By.id("id-0-result-0")).click();
 
-        String station = driver.findElement(By.id("travelplanner_from")).getAttribute("value");
+        wait.until(ExpectedConditions.attributeContains(By.cssSelector("#id-0"), "value", "Medborgarplatsen (Stockholm)"));
+
+        String station = driver.findElement(By.id("id-0")).getAttribute("value");
         assertEquals("Texten på Från fältet stämde inte med förväntat värde", "Medborgarplatsen (Stockholm)", station);
         System.out.println(station);
     }
